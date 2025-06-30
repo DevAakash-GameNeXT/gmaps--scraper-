@@ -1,0 +1,25 @@
+name: Scrape B2B Emails
+
+on:
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Create credentials.json from secret
+        run: |
+          echo "${{ secrets.GOOGLE_CREDENTIALS_B64 }}" | base64 -d > credential.json
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        run: python main.py
