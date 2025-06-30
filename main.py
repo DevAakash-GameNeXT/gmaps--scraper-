@@ -66,7 +66,7 @@ def send_to_google_sheet(spreadsheet_id, sheet_name, credentials_json_path, data
 
 # -------- RUN SCRIPT -------- #
 if __name__ == "__main__":
-    with open("working.txt", "w") as f:
+    with open("work_list.txt", "r") as f:
         data = f.readlines()
     for i in data:
         query = str(i)
